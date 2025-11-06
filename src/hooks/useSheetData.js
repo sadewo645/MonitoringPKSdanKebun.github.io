@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export function useSheetData(sheetName) {
-  const [rows, setRows] = useState([]);
+export function useSheetData(sheetName, fallback = []) {
+  const [rows, setRows] = useState(fallback);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [updatedAt, setUpdatedAt] = useState(null);
