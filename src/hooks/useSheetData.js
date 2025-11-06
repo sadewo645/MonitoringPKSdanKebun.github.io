@@ -9,15 +9,14 @@ export function useSheetData(sheetName, fallback = []) {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(
+      const res = await fetch(
         `https://script.google.com/macros/s/AKfycbzC_v1nuMxeM7TnyfPWAJzqt3ZIb_Wtx3ixbSsS6TBXCGY63YTh_oIX6asv1dcCZ7A/exec?sheet=${sheetName}`,
         { mode: 'cors' }
       );
-      const data = await response.json();
+      const data = await res.json();
       setRows(data);
       setUpdatedAt(new Date());
     } catch (err) {
-      console.error(err);
       setError(err);
     } finally {
       setLoading(false);
